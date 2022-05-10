@@ -1,5 +1,30 @@
+import { AppError } from "../../../errors/AppError";
+
 class CalcNumberUseCase {
-    dividingNumbers(number: number): Object { 
+
+    execute(number: number): Object {
+
+        if(Number(number) && typeof number !== 'number') number = Number(number);
+
+        if (!Number(number)) throw new AppError("Value is not a number!");
+
+        if (!Number.isInteger(number)) throw new AppError("Value is not a integer!");
+
+        const dividers = this.dividingNumbers(number);
+        const primeNumbers = this.primeNumbers(number);
+
+        return { dividers, primeNumbers };
+    }
+
+    isPrime(n: number): boolean {
+        for(let i = 2; i*i <= n; i++) {
+            if(n % i === 0) return false;
+        }
+        
+        return true;
+    }
+
+    dividingNumbers(number: number): number[] { 
         const dividers = [];
 
         for(let count = 1; count <= number; count++) {
@@ -14,15 +39,12 @@ class CalcNumberUseCase {
     primeNumbers(number: number): Object {
         const primeNumbers = [];
 
-        for(let count = 2; count <= number; count++) {
-            let isPrimeNumber = true;
-            for(let divider = 2; divider < count; divider++){
-                if(count % divider === 0) {                    
-                    isPrimeNumber = false;
-                    break;
-                }
-            }
-            if(isPrimeNumber) primeNumbers.push(count);
+        const dividers = this.dividingNumbers(number);
+
+        for (let n of dividers) {
+            if(n !== 1) {
+                if(this.isPrime(n)) primeNumbers.push(n);
+            }   
         }
 
         return primeNumbers;

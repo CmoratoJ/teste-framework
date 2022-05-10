@@ -4,8 +4,8 @@ import { CalcNumberController } from "../modules/calcNumber/useCases/CalcNumberC
 
 const calcNumberRoutes = Router();
 
-const calcNumber = new CalcNumberController();
+const calcNumberController = new CalcNumberController();
 
-calcNumberRoutes.post("/", calcNumber.handle);
+calcNumberRoutes.post("/", calcNumberController.handle);
 
 export { calcNumberRoutes };

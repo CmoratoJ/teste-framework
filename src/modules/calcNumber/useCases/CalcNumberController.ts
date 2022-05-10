@@ -8,13 +8,9 @@ class CalcNumberController {
 
         const calcNumberUseCase = new CalcNumberUseCase();
 
-        const dividers = calcNumberUseCase.dividingNumbers(number);
-        const primeNumbers = calcNumberUseCase.primeNumbers(number);
+        const decompose = calcNumberUseCase.execute(number);
 
-        return response.json({
-            dividers,
-            primeNumbers
-        });
+        return response.json(decompose);
     }
     
 }
