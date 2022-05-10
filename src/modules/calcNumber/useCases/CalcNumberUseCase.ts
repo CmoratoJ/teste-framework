@@ -6,6 +6,8 @@ class CalcNumberUseCase {
 
         if(Number(number) && typeof number !== 'number') number = Number(number);
 
+        if(number == 0) throw new AppError("There is no divisor for number 0");
+
         if (!Number(number)) throw new AppError("Value is not a number!");
 
         if (!Number.isInteger(number)) throw new AppError("Value is not a integer!");
@@ -20,7 +22,7 @@ class CalcNumberUseCase {
         for(let i = 2; i*i <= n; i++) {
             if(n % i === 0) return false;
         }
-        
+
         return true;
     }
 
