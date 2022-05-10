@@ -1,0 +1,41 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Test_framework Documentation",
+        "description": "This is an API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/calcNumber": {
+            "post": {
+                "tags": ["CalcNumber"],
+                "summary": "Return prime numbers and dividing numbers",
+                "description": "Return prime numbers and dividing numbers",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/CalcNumber"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "CalcNumber": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}
